@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bellure Booking — Online boekingssysteem voor salons</title>
+  <meta name="description" content="Online boekingssysteem voor kappers en salons. Klanten kiezen behandeling, medewerker en tijd. iDEAL betalingen, slimme agenda, klantenbeheer. 30 dagen gratis proberen." />
+  <link rel="canonical" href="https://bellure.nl/boekingen" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bellure.nl/boekingen" />
+  <meta property="og:title" content="Bellure Booking — Online boekingssysteem voor salons" />
+  <meta property="og:description" content="Online boekingssysteem voor kappers en salons. iDEAL betalingen, slimme agenda, klantenbeheer. 30 dagen gratis." />
+  <meta property="og:image" content="https://bellure.nl/og-image.png" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bellure Booking — Online boekingssysteem voor salons" />
+  <meta name="twitter:description" content="Online boekingssysteem voor kappers en salons. iDEAL betalingen, slimme agenda, klantenbeheer." />
+  <meta name="twitter:image" content="https://bellure.nl/og-image.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="/favicon-192.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#1A1A1A" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Bellure Booking",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Online boekingssysteem voor kappers, nagelstudio's en schoonheidssalons. Met iDEAL betalingen, agenda en klantenbeheer.",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "EUR",
+      "price": "14.99",
+      "priceValidUntil": "2027-01-01"
+    },
+    "brand": { "@type": "Brand", "name": "Bellure" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <style>
+    /* Boekingen page specific styles */
+    .page-hero {
+      padding: 160px 2rem 80px;
+      text-align: center;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .page-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .page-hero .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-2);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .page-hero .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Features grid */
+    .features-section {
+      padding: 80px 2rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .features-section .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .feature-grid-8 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 768px) {
+      .feature-grid-8 { grid-template-columns: 1fr; }
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 2.5rem;
+      transition: all 0.4s var(--ease);
+    }
+    .feature-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    }
+    .feature-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--warm-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--warm);
+    }
+    .feature-card-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .feature-card h4 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .feature-card p {
+      color: var(--text-2);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Pricing section */
+    .pricing-section {
+      padding: 80px 2rem;
+      background: var(--bg-alt);
+    }
+    .pricing-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 800px;
+      margin: 3rem auto 0;
+    }
+    @media (max-width: 640px) {
+      .pricing-cards { grid-template-columns: 1fr; }
+    }
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 2.5rem;
+      position: relative;
+    }
+    .price-card--popular {
+      border-color: var(--warm);
+    }
+    .price-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--warm);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 16px;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+    }
+    .price-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .price-card .price-desc {
+      color: var(--text-2);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .price-amount {
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+    .price-period {
+      color: var(--text-2);
+      font-size: 0.9rem;
+    }
+    .price-original {
+      color: var(--text-3);
+      text-decoration: line-through;
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+    }
+    .price-card ul {
+      margin: 1.5rem 0;
+    }
+    .price-card ul li {
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      color: var(--text-2);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .price-card ul li::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border-radius: 50%;
+      background: var(--warm-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 3px;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 7l3 3 5-5' stroke='%23B8956A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* How it works */
+    .how-section {
+      padding: 80px 2rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 768px) {
+      .how-steps { grid-template-columns: 1fr; }
+    }
+    .how-step {
+      text-align: center;
+      padding: 2rem;
+    }
+    .how-step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 auto 1.5rem;
+    }
+    .how-step h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .how-step p {
+      color: var(--text-2);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* FAQ accordion */
+    .faq-section {
+      padding: 80px 2rem;
+      background: var(--bg-alt);
+    }
+    .faq-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.5rem 0;
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+      gap: 1rem;
+    }
+    .faq-question svg {
+      min-width: 16px;
+      transition: transform 0.3s var(--ease);
+    }
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease);
+    }
+    .faq-answer-inner {
+      padding: 0 0 1.5rem;
+      color: var(--text-2);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+    }
+
+    /* Bottom CTA */
+    .bottom-cta {
+      padding: 100px 2rem;
+      text-align: center;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .bottom-cta h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+    .bottom-cta p {
+      color: var(--text-2);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+    }
+
+    .trial-badge {
+      display: inline-block;
+      background: var(--warm-bg);
+      color: var(--warm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-toggle-group {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .pricing-toggle {
+      display: flex;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      gap: 4px;
+    }
+    .pricing-toggle button {
+      background: none;
+      border: none;
+      padding: 10px 24px;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-2);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s var(--ease);
+    }
+    .pricing-toggle button.active {
+      background: var(--accent);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Bellure</a>
+      <div class="nav-links" id="navLinks">
+        <a href="/#producten">Producten</a>
+        <a href="/#website">Website</a>
+        <a href="/#booking">Booking</a>
+        <a href="/#prijzen">Prijzen</a>
+        <a href="/#contact">Contact</a>
+      </div>
+      <a href="https://mijn.bellure.nl/admin/registreren" class="nav-cta">Gratis proberen</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="/#producten">Producten</a>
+      <a href="/#website">Website</a>
+      <a href="/#booking">Booking</a>
+      <a href="/#prijzen">Prijzen</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://mijn.bellure.nl/admin/registreren" class="mobile-menu-cta">Gratis proberen</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <span class="trial-badge">30 dagen gratis proberen</span>
+    <h1>Online boeken dat<br><em>gewoon werkt.</em></h1>
+    <p class="hero-sub">
+      Klanten kiezen hun behandeling, medewerker en tijdstip. Betalen direct via iDEAL. 
+      En jij houdt overzicht in een overzichtelijke agenda. Geen gedoe, geen dubbele boekingen.
+    </p>
+    <div class="hero-actions">
+      <a href="https://mijn.bellure.nl/admin/registreren" class="btn btn--dark btn--lg">
+        30 dagen gratis proberen
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#functies" class="btn btn--ghost btn--lg">Bekijk de functies</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-section" id="functies">
+    <div class="section-header">
+      <span class="section-label">Alles wat je nodig hebt</span>
+      <h2 class="section-title">Gebouwd voor salons.<br><em>Tot in detail.</em></h2>
+    </div>
+    <div class="feature-grid-8">
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        </div>
+        <h4>Boekingswidget</h4>
+        <p>Een widget die je op elke website kunt plaatsen. Klanten kiezen hun behandeling, medewerker en tijdstip. Volledig in jouw huisstijl, zodat het naadloos aansluit bij je site. Werkt op desktop en mobiel.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+        </div>
+        <h4>Slimme agenda</h4>
+        <p>Dag- en weekoverzicht per medewerker. Afspraken verslepen, pauzes blokkeren, beschikbaarheid instellen. Alles op een scherm. Geen dubbele boekingen, geen verwarring.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+        </div>
+        <h4>Betalingen via iDEAL</h4>
+        <p>Klanten betalen een aanbetaling of het volledige bedrag direct bij het boeken. Het geld gaat rechtstreeks naar jouw rekening via Mollie. Minder no-shows, meer zekerheid.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 17H2a3 3 0 003 3h14a3 3 0 003-3z"/><path d="M6 12V2l6 4 6-4v10"/></svg>
+        </div>
+        <h4>Automatische herinneringen</h4>
+        <p>Klanten ontvangen automatisch een herinnering 24 uur en 1 uur voor hun afspraak, per e-mail. Minder vergeten afspraken, minder no-shows. Jij hoeft er niets voor te doen.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4>Klantenbeheer</h4>
+        <p>Overzicht van al je klanten, hun boekingsgeschiedenis en no-show registratie. Weet wie er komt, hoe vaak, en welke behandelingen ze kiezen. Ken je klant bij naam.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        </div>
+        <h4>Medewerkersbeheer</h4>
+        <p>Stel per medewerker in welke diensten ze aanbieden, hun werktijden en rechten. Geef toegang tot de agenda zonder dat ze bij instellingen of omzet kunnen. Volledig configureerbaar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h4>E-mail branding</h4>
+        <p>Elke e-mail die naar je klanten gaat is voorzien van jouw logo, kleuren en stijl. Bevestigingen, herinneringen, alles ziet eruit alsof het van jouw salon komt. Professioneel en herkenbaar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h4>Statistieken</h4>
+        <p>Inzicht in omzet per medewerker en per dienst, no-show percentages en trends over tijd. Weet wat goed loopt en waar je kunt verbeteren. Data die je helpt betere beslissingen te nemen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing-section" id="prijzen">
+    <div class="pricing-inner">
+      <div class="section-header" style="text-align:center; margin-bottom: 2rem;">
+        <span class="section-label">Prijzen</span>
+        <h2 class="section-title">Eenvoudig en transparant.<br><em>Geen verborgen kosten.</em></h2>
+      </div>
+      <div class="pricing-toggle-group">
+        <div class="pricing-toggle" id="pricingToggle">
+          <button data-period="year" class="active">Per jaar <span style="font-size:0.75rem;opacity:0.7">(-20%)</span></button>
+          <button data-period="month">Per maand</button>
+        </div>
+      </div>
+      <div class="pricing-cards">
+        <div class="price-card price-card--popular">
+          <span class="price-badge">Meest gekozen</span>
+          <h4>Booking + Website</h4>
+          <p class="price-desc">Het boekingssysteem als toevoeging bij je Bellure website</p>
+          <div>
+            <span class="price-amount" id="priceAddon">€ 14,99</span>
+            <span class="price-period">/mnd</span>
+            <span class="price-original" id="priceAddonOriginal">€ 18,74</span>
+          </div>
+          <ul>
+            <li>Alle functies inbegrepen</li>
+            <li>Boekingswidget op je Bellure site</li>
+            <li>iDEAL betalingen</li>
+            <li>Automatische herinneringen</li>
+            <li>Klanten- en medewerkersbeheer</li>
+            <li>E-mail branding</li>
+            <li>Statistieken</li>
+          </ul>
+          <a href="https://mijn.bellure.nl/admin/registreren" class="btn btn--dark btn--lg" style="width:100%;justify-content:center;">30 dagen gratis proberen</a>
+        </div>
+        <div class="price-card">
+          <h4>Booking Standalone</h4>
+          <p class="price-desc">Het boekingssysteem los, voor je bestaande website</p>
+          <div>
+            <span class="price-amount" id="priceStandalone">€ 29,98</span>
+            <span class="price-period">/mnd</span>
+            <span class="price-original" id="priceStandaloneOriginal">€ 37,48</span>
+          </div>
+          <ul>
+            <li>Alle functies inbegrepen</li>
+            <li>Widget op elke website</li>
+            <li>iDEAL betalingen</li>
+            <li>Automatische herinneringen</li>
+            <li>Klanten- en medewerkersbeheer</li>
+            <li>E-mail branding</li>
+            <li>Statistieken</li>
+          </ul>
+          <a href="https://mijn.bellure.nl/admin/registreren" class="btn btn--dark btn--lg" style="width:100%;justify-content:center;">30 dagen gratis proberen</a>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--text-3);font-size:0.85rem;margin-top:1.5rem;">20% korting bij jaarbetaling. Maandelijks opzegbaar.</p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-section" id="hoe-het-werkt">
+    <div class="section-header" style="text-align:center;">
+      <span class="section-label">Hoe het werkt</span>
+      <h2 class="section-title">In drie stappen<br><em>aan de slag.</em></h2>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <h4>Account aanmaken</h4>
+        <p>Maak gratis een account aan. Vul je salonnaam in, kies een wachtwoord en je kunt direct beginnen. Geen creditcard nodig.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <h4>Salon inrichten</h4>
+        <p>Voeg je behandelingen, medewerkers en werktijden toe. Stel je iDEAL betalingen in via Mollie. Pas je e-mail branding aan.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <h4>Klanten boeken</h4>
+        <p>Plaats de widget op je website en deel de boekingslink. Klanten boeken zelf, betalen direct en ontvangen automatisch bevestigingen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+      <div class="section-header" style="text-align:center; margin-bottom: 3rem;">
+        <span class="section-label">Veelgestelde vragen</span>
+        <h2 class="section-title">Nog vragen?</h2>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Hoe werkt de proefperiode?
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Je krijgt 30 dagen lang toegang tot alle functies, zonder beperkingen. Je hoeft geen betaalgegevens in te vullen. Na de proefperiode kun je kiezen om door te gaan of te stoppen.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Kan ik het boekingssysteem gebruiken zonder Bellure website?
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Ja, het boekingssysteem is ook los beschikbaar. We plaatsen de boekingswidget op je bestaande website, ongeacht het platform. De prijs is dan het standalone tarief.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Hoe werken de betalingen?
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Betalingen lopen via Mollie, een Nederlandse betaalprovider. Klanten betalen via iDEAL. Het geld wordt direct op jouw rekening gestort. Je kunt instellen of klanten een aanbetaling of het volledige bedrag betalen.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Kan ik maandelijks opzeggen?
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Ja, je kunt per einde van de maand opzeggen. Bij een jaarabonnement geldt de korting voor de resterende looptijd. Er zijn geen opzegkosten.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Wat gebeurt er met mijn gegevens als ik stop?
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Na opzegging bewaren we je gegevens nog 30 dagen, zodat je eventueel terug kunt komen. Daarna worden ze verwijderd conform onze privacyverklaring. Je kunt ook eerder verwijdering aanvragen.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Hoeveel medewerkers kan ik toevoegen?
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Er is geen limiet op het aantal medewerkers. Je kunt zoveel medewerkers toevoegen als je wilt, elk met hun eigen rechten, roosters en diensten.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Werkt het systeem ook op mijn telefoon?
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Ja, zowel het beheerpaneel als de boekingswidget zijn volledig responsive. Je kunt je agenda bekijken en afspraken beheren vanaf je telefoon, tablet of computer.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bottom-cta">
+    <h2>Start je gratis<br><em>proefperiode.</em></h2>
+    <p>30 dagen lang alle functies uitproberen. Geen creditcard nodig. Geen verplichtingen.</p>
+    <a href="https://mijn.bellure.nl/admin/registreren" class="btn btn--dark btn--lg">
+      Gratis beginnen
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo">Bellure</span>
+          <p>Websites & boekingen voor salons</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Product</h5>
+            <a href="/#website">Website</a>
+            <a href="/#booking">Booking</a>
+            <a href="/#prijzen">Prijzen</a>
+          </div>
+          <div class="footer-col">
+            <h5>Bedrijf</h5>
+            <a href="/#contact">Contact</a>
+            <a href="/voorwaarden">Voorwaarden</a>
+            <a href="/privacy">Privacy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Bellure is een product van <a href="https://ensalabs.nl" target="_blank" rel="noopener">Ensalabs</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // Pricing toggle
+    const toggle = document.getElementById('pricingToggle');
+    if (toggle) {
+      toggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const period = btn.dataset.period;
+          if (period === 'year') {
+            document.getElementById('priceAddon').textContent = '\u20AC 14,99';
+            document.getElementById('priceAddonOriginal').textContent = '\u20AC 18,74';
+            document.getElementById('priceStandalone').textContent = '\u20AC 29,98';
+            document.getElementById('priceStandaloneOriginal').textContent = '\u20AC 37,48';
+          } else {
+            document.getElementById('priceAddon').textContent = '\u20AC 18,74';
+            document.getElementById('priceAddonOriginal').textContent = '';
+            document.getElementById('priceStandalone').textContent = '\u20AC 37,48';
+            document.getElementById('priceStandaloneOriginal').textContent = '';
+          }
+        });
+      });
+    }
+
+    // Mobile nav
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      });
+      mobileMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  </script>
+</body>
+</html>

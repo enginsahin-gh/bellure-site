@@ -1,247 +1,314 @@
 // ========================================
-// BELLURE — Premium interactions v4
-// Depth. Layers. Luxe.
+// BELLURE — Interactive pricing + smooth UX
 // ========================================
 
-// ---- Cursor glow follow ----
-const cursorGlow = document.getElementById('cursorGlow');
-if (cursorGlow && window.innerWidth > 1024) {
-  let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    cursorGlow.classList.add('active');
-  });
-  function animateGlow() {
-    glowX += (mouseX - glowX) * 0.06;
-    glowY += (mouseY - glowY) * 0.06;
-    cursorGlow.style.left = glowX + 'px';
-    cursorGlow.style.top = glowY + 'px';
-    requestAnimationFrame(animateGlow);
-  }
-  animateGlow();
-  document.addEventListener('mouseleave', () => cursorGlow.classList.remove('active'));
-}
-
-// ---- Smooth scroll (lerp-based, desktop only) ----
-class SmoothScroll {
-  constructor() {
-    this.targetY = window.scrollY;
-    this.currentY = window.scrollY;
-    this.ease = 0.075;
-    this.isRunning = false;
-    this.enabled = !('ontouchstart' in window) && window.innerWidth > 768;
-    if (this.enabled) this.init();
-  }
-  init() {
-    window.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      this.targetY = Math.max(0, Math.min(
-        this.targetY + e.deltaY * 0.8,
-        document.body.scrollHeight - window.innerHeight
-      ));
-      if (!this.isRunning) this.animate();
-    }, { passive: false });
-    window.addEventListener('scroll', () => {
-      if (!this.isRunning) { this.targetY = window.scrollY; this.currentY = window.scrollY; }
-    }, { passive: true });
-  }
-  animate() {
-    this.isRunning = true;
-    this.currentY += (this.targetY - this.currentY) * this.ease;
-    if (Math.abs(this.targetY - this.currentY) < 0.5) {
-      this.currentY = this.targetY;
-      window.scrollTo(0, this.currentY);
-      this.isRunning = false;
-      return;
-    }
-    window.scrollTo(0, this.currentY);
-    requestAnimationFrame(() => this.animate());
-  }
-  scrollTo(y) { this.targetY = y; if (!this.isRunning) this.animate(); }
-}
-const smoothScroll = new SmoothScroll();
-
 // ---- Scroll reveal ----
-const revealElements = document.querySelectorAll('[data-reveal]');
-const revealObserver = new IntersectionObserver(
+const animatedEls = document.querySelectorAll('[data-animate]');
+
+const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        requestAnimationFrame(() => entry.target.classList.add('revealed'));
-        revealObserver.unobserve(entry.target);
+        const delay = parseInt(entry.target.dataset.delay) || 0;
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        observer.unobserve(entry.target);
       }
     });
   },
-  { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
+  { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
 );
-revealElements.forEach((el) => revealObserver.observe(el));
 
-// ---- Nav scroll effect ----
+animatedEls.forEach((el) => observer.observe(el));
+
+// ---- Nav scroll ----
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 80);
+  nav.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
 // ---- Smooth anchor links ----
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener('click', (e) => {
-    const targetEl = document.querySelector(anchor.getAttribute('href'));
-    if (targetEl) {
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
+  a.addEventListener('click', (e) => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const t = document.querySelector(href);
+    if (t) {
       e.preventDefault();
-      const y = targetEl.getBoundingClientRect().top + window.scrollY - 80;
-      if (smoothScroll.enabled) smoothScroll.scrollTo(y);
-      else window.scrollTo({ top: y, behavior: 'smooth' });
+      // If menu is open, close it first, then scroll
+      if (menuOpen) {
+        closeMenu();
+        setTimeout(() => {
+          window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+        }, 200);
+      } else {
+        window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+      }
     }
   });
 });
-
-// ---- Parallax depth system ----
-const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
-const heroContent = document.querySelector('.hero-content');
-const heroVisual = document.querySelector('.hero-visual');
-const depthOrbs = document.querySelectorAll('.depth-orb');
-
-function updateParallax() {
-  const scrollY = window.scrollY;
-  const vh = window.innerHeight;
-
-  // Hero parallax
-  if (heroContent && scrollY < vh * 1.2) {
-    const progress = scrollY / vh;
-    heroContent.style.transform = `translateY(${scrollY * 0.2}px)`;
-    heroContent.style.opacity = 1 - progress * 1.5;
-    if (heroVisual) {
-      heroVisual.style.transform = `translateY(${scrollY * 0.1}px)`;
-      heroVisual.style.opacity = 1 - progress * 1.2;
-    }
-  }
-
-  // Depth orbs — move at different speeds for layered feel
-  depthOrbs.forEach((orb, i) => {
-    const speed = parseFloat(orb.dataset.parallaxSpeed) || 0.03;
-    orb.style.transform = `translateY(${scrollY * speed * (i % 2 === 0 ? -1 : 1)}px)`;
-  });
-
-  // Generic parallax elements
-  parallaxElements.forEach((el) => {
-    const speed = parseFloat(el.dataset.parallaxSpeed) || 0.05;
-    const rect = el.getBoundingClientRect();
-    const centerOffset = (rect.top + rect.height / 2 - vh / 2) / vh;
-    el.style.transform = `translateY(${centerOffset * speed * vh * -1}px)`;
-  });
-}
-
-if (window.innerWidth > 768) {
-  window.addEventListener('scroll', updateParallax, { passive: true });
-  updateParallax();
-}
-
-// ---- Floating card bob animation ----
-document.querySelectorAll('.hero-float').forEach((el, i) => {
-  el.style.animation = `floatBob ${3 + i * 0.5}s ease-in-out infinite ${i * 0.8}s`;
-});
-
-// ---- Card tilt on hover (desktop) ----
-if (window.innerWidth > 1024) {
-  document.querySelectorAll('.feature-block, .salon-card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `translateY(-4px) perspective(800px) rotateX(${y * -5}deg) rotateY(${x * 5}deg)`;
-    });
-    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-  });
-}
-
-// ---- Animated counter for stats ----
-const countObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.dataset.count);
-        if (target) {
-          let current = 0;
-          const step = Math.ceil(target / 30);
-          const interval = setInterval(() => {
-            current += step;
-            if (current >= target) { current = target; clearInterval(interval); }
-            el.textContent = current;
-          }, 40);
-        }
-        countObserver.unobserve(el);
-      }
-    });
-  },
-  { threshold: 0.5 }
-);
-document.querySelectorAll('[data-count]').forEach((el) => countObserver.observe(el));
-
-// ---- Section divider glow on scroll ----
-const dividers = document.querySelectorAll('.section-divider-line');
-const dividerObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '0.5';
-        entry.target.style.height = '80px';
-      }
-    });
-  },
-  { threshold: 0.5 }
-);
-dividers.forEach((d) => {
-  d.style.transition = 'opacity 1s ease, height 1s ease';
-  d.style.opacity = '0';
-  d.style.height = '0';
-  dividerObserver.observe(d);
-});
-
-// ---- Salon cards scroll dots ----
-const salonsGrid = document.querySelector('.salons-grid');
-const salonDots = document.querySelectorAll('.scroll-dot');
-
-if (salonsGrid && salonDots.length) {
-  salonsGrid.addEventListener('scroll', () => {
-    const cards = salonsGrid.querySelectorAll('.salon-card');
-    const scrollLeft = salonsGrid.scrollLeft;
-    const cardWidth = cards[0]?.offsetWidth + 16; // gap
-    const activeIndex = Math.round(scrollLeft / cardWidth);
-
-    salonDots.forEach((dot, i) => {
-      dot.classList.toggle('scroll-dot--active', i === activeIndex);
-    });
-  }, { passive: true });
-}
 
 // ---- Mobile menu ----
 const hamburger = document.getElementById('navHamburger');
 const mobileMenu = document.getElementById('mobileMenu');
+let menuOpen = false;
+
+function openMenu() {
+  menuOpen = true;
+  mobileMenu.classList.add('open');
+  hamburger.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  menuOpen = false;
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 if (hamburger && mobileMenu) {
-  hamburger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.contains('open');
-    mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open');
-    document.body.style.overflow = isOpen ? '' : 'hidden';
+  // Use a flag to debounce rapid toggles
+  let toggling = false;
+
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    if (toggling) return;
+    toggling = true;
+
+    if (menuOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+
+    // Debounce for 400ms to prevent double-fires
+    setTimeout(() => { toggling = false; }, 400);
   });
 
-  // Close on link click
+  // Prevent ghost click / double tap on touch devices
+  hamburger.addEventListener('touchend', (e) => {
+    e.preventDefault();
+  });
+
+  // Close menu when clicking a link inside it
   mobileMenu.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      hamburger.classList.remove('open');
-      document.body.style.overflow = '';
+    link.addEventListener('click', (e) => {
+      if (!menuOpen) return;
+      e.stopPropagation();
+      closeMenu();
     });
+  });
+
+  // Close menu when clicking the overlay background
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu || e.target.classList.contains('mobile-menu-inner')) {
+      closeMenu();
+    }
   });
 }
 
-// ---- Fallback reveal ----
-setTimeout(() => {
-  revealElements.forEach((el) => {
-    if (!el.classList.contains('revealed') && el.getBoundingClientRect().top < window.innerHeight + 100) {
-      el.classList.add('revealed');
+// ---- Step line animation ----
+const lineObs = new IntersectionObserver(
+  (entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('revealed'); lineObs.unobserve(e.target); }
+  }),
+  { threshold: 0.5 }
+);
+document.querySelectorAll('.step-line').forEach((el) => lineObs.observe(el));
+
+// ========================================
+// BILLING TOGGLE + PRICING CONFIGURATOR
+// ========================================
+const toggleMonth = document.getElementById('toggleMonth');
+const toggleYear = document.getElementById('toggleYear');
+const toggleSlider = document.getElementById('toggleSlider');
+const billingToggle = document.getElementById('billingToggle');
+
+let isYearly = true;
+
+function positionSlider() {
+  if (!toggleSlider || !toggleMonth || !toggleYear) return;
+  const target = isYearly ? toggleYear : toggleMonth;
+  const rect = target.getBoundingClientRect();
+  const parentRect = billingToggle.getBoundingClientRect();
+  toggleSlider.style.left = (rect.left - parentRect.left) + 'px';
+  toggleSlider.style.width = rect.width + 'px';
+
+  toggleMonth.classList.toggle('toggle-option--active', !isYearly);
+  toggleYear.classList.toggle('toggle-option--active', isYearly);
+}
+
+toggleMonth?.addEventListener('click', () => { isYearly = false; positionSlider(); updatePricing(); });
+toggleYear?.addEventListener('click', () => { isYearly = true; positionSlider(); updatePricing(); });
+
+// Position slider on load
+requestAnimationFrame(() => {
+  positionSlider();
+  updatePricing();
+});
+
+// Also reposition on resize
+window.addEventListener('resize', positionSlider);
+
+// ---- Pricing state ----
+const PRICES = {
+  base:    { monthly: 24.99, yearly: 19.99 },
+  booking: { monthly: 18.74, yearly: 14.99 },
+  cms:     { monthly: 4.99,  yearly: 3.99 },
+  seo_basic: { monthly: 6.24, yearly: 4.99 },
+  seo_plus:  { monthly: 12.49, yearly: 9.99 },
+  support: { monthly: 12.49, yearly: 9.99 },
+};
+
+function getActiveAddons() {
+  const addons = ['base']; // always included
+  if (document.getElementById('addonBooking')?.checked) addons.push('booking');
+  if (document.getElementById('addonCms')?.checked) addons.push('cms');
+
+  const seoVal = document.querySelector('input[name="seo"]:checked')?.value;
+  if (seoVal === 'basic') addons.push('seo_basic');
+  else if (seoVal === 'plus') addons.push('seo_plus');
+  // seo_pro = op aanvraag, no price
+
+  if (document.getElementById('addonSupport')?.checked) addons.push('support');
+  return addons;
+}
+
+function formatPrice(n) {
+  return '€ ' + n.toFixed(2).replace('.', ',');
+}
+
+function animateNumber(el, newText) {
+  el.style.transform = 'translateY(-4px)';
+  el.style.opacity = '0.5';
+  setTimeout(() => {
+    el.textContent = newText;
+    el.style.transform = 'translateY(0)';
+    el.style.opacity = '1';
+  }, 150);
+}
+
+function updatePricing() {
+  const addons = getActiveAddons();
+  const period = isYearly ? 'yearly' : 'monthly';
+
+  // Update individual config-price elements
+  document.querySelectorAll('.config-price').forEach((el) => {
+    const m = el.dataset.monthly;
+    const y = el.dataset.yearly;
+    if (m && y) el.textContent = formatPrice(parseFloat(isYearly ? y : m));
+  });
+
+  // Update SEO option prices
+  document.querySelectorAll('.seo-option-price').forEach((el) => {
+    const m = el.dataset.monthly;
+    const y = el.dataset.yearly;
+    if (m && y) el.textContent = formatPrice(parseFloat(isYearly ? y : m)) + '/mnd';
+  });
+
+  // Update standalone price
+  document.querySelectorAll('.standalone-price-amount').forEach((el) => {
+    const m = el.dataset.monthly;
+    const y = el.dataset.yearly;
+    if (m && y) el.textContent = formatPrice(parseFloat(isYearly ? y : m));
+  });
+
+  // Calculate total
+  let total = 0;
+  let hasSeoProRequest = false;
+
+  addons.forEach((key) => {
+    if (PRICES[key]) total += PRICES[key][period];
+  });
+
+  const seoVal = document.querySelector('input[name="seo"]:checked')?.value;
+  if (seoVal === 'pro') hasSeoProRequest = true;
+
+  // Build summary items
+  const summaryEl = document.getElementById('summaryItems');
+  const items = [
+    { name: 'Website', key: 'base', active: true },
+    { name: 'Online boeken', key: 'booking', active: addons.includes('booking') },
+    { name: 'Zelf aanpassen', key: 'cms', active: addons.includes('cms') },
+    { name: 'Vindbaarheid Basis', key: 'seo_basic', active: addons.includes('seo_basic') },
+    { name: 'Vindbaarheid Uitgebreid', key: 'seo_plus', active: addons.includes('seo_plus') },
+    { name: 'Persoonlijke begeleiding', key: 'support', active: addons.includes('support') },
+  ];
+
+  // Only show active items + SEO Pro if selected
+  summaryEl.innerHTML = items
+    .filter(i => i.active)
+    .map(i => `
+      <div class="summary-item">
+        <span class="summary-item-name">${i.name}</span>
+        <span class="summary-item-price">${formatPrice(PRICES[i.key][period])}</span>
+      </div>
+    `).join('');
+
+  if (hasSeoProRequest) {
+    summaryEl.innerHTML += `
+      <div class="summary-item">
+        <span class="summary-item-name">SEO Pro</span>
+        <span class="summary-item-price">Op aanvraag</span>
+      </div>
+    `;
+  }
+
+  // Update total
+  const totalEl = document.getElementById('totalAmount');
+  if (totalEl) animateNumber(totalEl, formatPrice(total));
+
+  // Update yearly total
+  const yearlyEl = document.getElementById('yearlyAmount');
+  const yearlyRow = document.getElementById('summaryYearly');
+  if (yearlyEl && yearlyRow) {
+    if (isYearly) {
+      yearlyRow.style.display = 'flex';
+      yearlyEl.textContent = formatPrice(total * 12);
+    } else {
+      yearlyRow.style.display = 'none';
+    }
+  }
+}
+
+// Listen to all config changes
+document.querySelectorAll('.config-checkbox, .seo-radio').forEach((input) => {
+  input.addEventListener('change', updatePricing);
+});
+
+// ---- Expandable cards ----
+document.querySelectorAll('.config-expand-btn').forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetId = btn.dataset.target;
+    const expandEl = targetId
+      ? document.getElementById(targetId)
+      : btn.closest('.config-card')?.querySelector('.config-expand');
+
+    if (!expandEl) return;
+
+    const isOpen = expandEl.classList.contains('open');
+    btn.classList.toggle('open', !isOpen);
+    expandEl.classList.toggle('open', !isOpen);
+
+    if (!isOpen) {
+      expandEl.style.maxHeight = expandEl.scrollHeight + 'px';
+    } else {
+      expandEl.style.maxHeight = '0';
     }
   });
-}, 3500);
+});
+
+// ---- Fallback reveal ----
+setTimeout(() => {
+  animatedEls.forEach((el) => {
+    if (!el.classList.contains('visible') && el.getBoundingClientRect().top < window.innerHeight + 50) {
+      el.classList.add('visible');
+    }
+  });
+}, 2500);

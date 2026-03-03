@@ -3,368 +3,680 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bellure — Luxe boekingsplatform voor de beautybranche</title>
-  <meta name="description" content="Bellure is het premium boekingsplatform voor salons. Online afspraken, betalingen en klantenbeheer in een luxe ervaring." />
+  <title>Bellure — Websites & Boekingen voor salons</title>
+  <meta name="description" content="Bellure bouwt op maat gemaakte websites en een slim boekingssysteem voor kappers, nagelstudio's en schoonheidssalons. Online boeken, iDEAL betalingen, agenda. Maandelijks opzegbaar." />
+  <link rel="canonical" href="https://bellure.nl/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bellure.nl/" />
+  <meta property="og:title" content="Bellure — Websites & Boekingen voor salons" />
+  <meta property="og:description" content="Op maat gemaakte websites en een slim boekingssysteem voor kappers, nagelstudio's en schoonheidssalons. Online boeken, iDEAL betalingen, agenda." />
+  <meta property="og:image" content="https://bellure.nl/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:site_name" content="Bellure" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bellure — Websites & Boekingen voor salons" />
+  <meta name="twitter:description" content="Op maat gemaakte websites en een slim boekingssysteem voor kappers, nagelstudio's en schoonheidssalons." />
+  <meta name="twitter:image" content="https://bellure.nl/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="/favicon-192.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#1A1A1A" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Bellure",
+    "url": "https://bellure.nl",
+    "logo": "https://bellure.nl/favicon-512.png",
+    "description": "Bellure bouwt op maat gemaakte websites en boekingssystemen voor salons in Nederland.",
+    "email": "hello@bellure.nl",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Ensalabs"
+    },
+    "sameAs": []
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bellure",
+    "url": "https://bellure.nl",
+    "description": "Websites en boekingssystemen voor salons",
+    "inLanguage": "nl"
+  }
+  </script>
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Bellure Website",
+      "description": "Op maat gemaakte website voor kappers, nagelstudio's en schoonheidssalons. Mobielvriendelijk, snel, met CMS.",
+      "brand": { "@type": "Brand", "name": "Bellure" },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "price": "19.99",
+        "priceValidUntil": "2027-01-01",
+        "availability": "https://schema.org/InStock",
+        "url": "https://bellure.nl/#prijzen"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Bellure Booking",
+      "description": "Online boekingssysteem voor salons. Klanten kiezen behandeling, medewerker en tijd. iDEAL betalingen, agenda, klantenbeheer.",
+      "brand": { "@type": "Brand", "name": "Bellure" },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "price": "14.99",
+        "priceValidUntil": "2027-01-01",
+        "availability": "https://schema.org/InStock",
+        "url": "https://bellure.nl/#prijzen"
+      }
+    }
+  ]
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles/main.css" />
 </head>
 <body>
 
-  <!-- Cursor glow (desktop only) -->
-  <div class="cursor-glow" id="cursorGlow"></div>
-
-  <!-- Floating orbs for depth -->
-  <div class="depth-orbs" aria-hidden="true">
-    <div class="depth-orb depth-orb--1" data-parallax-speed="0.03"></div>
-    <div class="depth-orb depth-orb--2" data-parallax-speed="0.05"></div>
-    <div class="depth-orb depth-orb--3" data-parallax-speed="0.02"></div>
-  </div>
-
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <span class="nav-logo-text">Bellure</span>
-      </a>
-      <div class="nav-links">
-        <a href="#features">Mogelijkheden</a>
-        <a href="#how">Hoe het werkt</a>
-        <a href="#salons">Voor salons</a>
-        <a href="#contact" class="nav-cta">Start vandaag</a>
+      <a href="#" class="nav-logo">Bellure</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#producten">Producten</a>
+        <a href="#website">Website</a>
+        <a href="#booking">Booking</a>
+        <a href="#prijzen">Prijzen</a>
+        <a href="#contact">Contact</a>
       </div>
+      <a href="#prijzen" class="nav-cta">Bekijk prijzen</a>
       <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span>
         <span></span>
         <span></span>
       </button>
     </div>
   </nav>
 
-  <!-- Mobile menu overlay -->
+  <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-inner">
-      <a href="#features" class="mobile-menu-link">Mogelijkheden</a>
-      <a href="#how" class="mobile-menu-link">Hoe het werkt</a>
-      <a href="#salons" class="mobile-menu-link">Voor salons</a>
-      <div class="mobile-menu-divider"></div>
-      <a href="#contact" class="btn btn--glow mobile-menu-cta">Start vandaag</a>
+      <a href="#producten">Producten</a>
+      <a href="#website">Website</a>
+      <a href="#booking">Booking</a>
+      <a href="#prijzen">Prijzen</a>
+      <a href="#contact">Contact</a>
+      <a href="#prijzen" class="mobile-menu-cta">Bekijk prijzen</a>
     </div>
   </div>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-gradient hero-gradient--1"></div>
-      <div class="hero-gradient hero-gradient--2"></div>
-      <div class="hero-gradient hero-gradient--3"></div>
-    </div>
+    <div class="hero-gradient"></div>
     <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span>Nieuw platform voor de beautybranche</span>
-      </div>
+      <p class="hero-tagline">Websites & boekingssystemen voor salons</p>
       <h1 class="hero-title">
-        <span class="hero-line" data-hero-reveal>Elke afspraak,</span>
-        <span class="hero-line hero-line--accent" data-hero-reveal>een ervaring.</span>
+        <span class="hero-word" style="--i:0">Wij</span>
+        <span class="hero-word" style="--i:1">bouwen</span>
+        <span class="hero-word" style="--i:2">jouw</span>
+        <br>
+        <span class="hero-word hero-word--accent" style="--i:3">online</span>
+        <span class="hero-word hero-word--accent" style="--i:4">visitekaartje.</span>
       </h1>
-      <p class="hero-subtitle" data-hero-reveal>
-        Het luxe boekingsplatform dat salons de uitstraling geeft die ze verdienen. Reserveren, betalen en beheren — naadloos en elegant.
+      <p class="hero-sub">
+        Een op maat gemaakte website en een slim boekingssysteem.<br>Zodat jouw klanten online kunnen boeken, betalen en terugkomen.
       </p>
-      <div class="hero-actions" data-hero-reveal>
-        <a href="#contact" class="btn btn--glow">Ontdek Bellure</a>
-        <a href="#features" class="btn btn--ghost">Bekijk mogelijkheden</a>
+      <div class="hero-actions">
+        <a href="#prijzen" class="btn btn--dark btn--lg">
+          Bekijk de mogelijkheden
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#producten" class="btn btn--ghost btn--lg">Meer weten</a>
       </div>
     </div>
+
+    <!-- Browser mockup -->
     <div class="hero-visual">
-      <div class="hero-phone" data-parallax-speed="0.04">
-        <div class="hero-phone-notch"></div>
-        <div class="hero-phone-screen">
-          <div class="phone-header">
-            <span class="phone-salon-name">Salon Amara</span>
-            <span class="phone-time">14:30</span>
-          </div>
-          <div class="phone-service">
-            <div class="phone-service-dot"></div>
-            <div>
-              <span class="phone-service-name">Balayage & Knippen</span>
-              <span class="phone-service-meta">120 min — Sophia</span>
+      <div class="hero-browser">
+        <div class="browser-bar">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url">salonamara.nl</div>
+          <div class="browser-dots-spacer"></div>
+        </div>
+        <div class="browser-screen">
+          <div class="screen-content">
+            <div class="screen-nav">
+              <span class="screen-logo">Salon Amara</span>
+              <div class="screen-nav-links"><span>Home</span><span>Behandelingen</span><span>Team</span><span>Boeken</span></div>
             </div>
-            <span class="phone-service-price">€ 145</span>
-          </div>
-          <div class="phone-btn-wrap">
-            <div class="phone-btn">Bevestig afspraak</div>
-          </div>
-          <div class="phone-footer">
-            <span>Powered by Bellure</span>
+            <div class="screen-hero">
+              <span class="screen-hero-tag">Welkom bij</span>
+              <span class="screen-hero-title">Salon Amara</span>
+              <span class="screen-hero-sub">Jouw moment van rust in Leiden</span>
+              <span class="screen-hero-btn">Boek een afspraak</span>
+            </div>
           </div>
         </div>
+        <a href="https://salon-amara.bellure.nl" target="_blank" rel="noopener" class="browser-link">
+          Bekijk deze voorbeeldsite
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 10.5l7-7m0 0H4.5m6 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
-      <div class="hero-phone-glow"></div>
-      <!-- Floating cards behind phone for depth -->
-      <div class="hero-float hero-float--1" data-parallax-speed="0.06">
-        <div class="float-card">
-          <span class="float-card-icon">&#10003;</span>
-          <span>Afspraak bevestigd</span>
+      <!-- Floating cards -->
+      <div class="float-card float-card--1">
+        <div class="float-card-icon float-card-icon--green">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <span class="float-card-title">Afspraak bevestigd</span>
+          <span class="float-card-meta">Balayage & Knippen, 14:30</span>
         </div>
       </div>
-      <div class="hero-float hero-float--2" data-parallax-speed="0.08">
-        <div class="float-card">
-          <span class="float-card-icon float-card-icon--gold">€</span>
-          <span>Betaling ontvangen</span>
+      <div class="float-card float-card--2">
+        <div class="float-card-icon float-card-icon--gold">€</div>
+        <div>
+          <span class="float-card-title">Betaling ontvangen</span>
+          <span class="float-card-meta">€ 36,25 aanbetaling</span>
         </div>
       </div>
-    </div>
-    <div class="hero-scroll-indicator">
-      <span>Scroll</span>
-      <div class="hero-scroll-line"></div>
     </div>
   </section>
 
-  <!-- Section divider -->
-  <div class="section-divider">
-    <div class="section-divider-line"></div>
+  <!-- Logos / trust -->
+  <div class="trust-bar" data-animate="fade-up">
+    <div class="trust-inner">
+      <span class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.5L10 13.58l-4.94 2.53.94-5.5-4-3.9 5.61-.87L10 1z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        Op maat gebouwd
+      </span>
+      <span class="trust-divider"></span>
+      <span class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/></svg>
+        iDEAL betalingen
+      </span>
+      <span class="trust-divider"></span>
+      <span class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.2"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        24/7 online boeken
+      </span>
+      <span class="trust-divider"></span>
+      <span class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2a6 6 0 016 6c0 4.5-6 10-6 10S4 12.5 4 8a6 6 0 016-6z" stroke="currentColor" stroke-width="1.2"/><circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.2"/></svg>
+        Maandelijks opzegbaar
+      </span>
+    </div>
   </div>
 
-  <!-- Stats bar -->
-  <section class="stats-bar">
-    <div class="stats-bar-inner">
-      <div class="stat" data-reveal>
-        <span class="stat-value" data-count="24">0</span><span class="stat-suffix">/7</span>
-        <span class="stat-label">Online boeken</span>
+  <!-- Products -->
+  <section class="section" id="producten">
+    <div class="section-inner">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">Twee producten. Een partner.</span>
+        <h2 class="section-title">Kies wat bij je past.<br><em>Of neem alles.</em></h2>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat" data-reveal>
-        <span class="stat-value">&lt;3s</span>
-        <span class="stat-label">Gemiddelde boektijd</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat" data-reveal>
-        <span class="stat-value">0%</span>
-        <span class="stat-label">Verborgen kosten</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat" data-reveal>
-        <span class="stat-value">iDEAL</span>
-        <span class="stat-label">Direct betalen</span>
+      <div class="products-grid">
+        <div class="product-card" data-animate="fade-up" data-delay="0">
+          <div class="product-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="8" width="36" height="28" rx="4"/><line x1="6" y1="16" x2="42" y2="16"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3>Bellure Website</h3>
+          <p>Een op maat gemaakte website die de sfeer van jouw salon vastlegt. Mobielvriendelijk, snel, en volledig door ons gebouwd en onderhouden.</p>
+          <a href="#website" class="product-link">
+            Ontdek meer
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="product-card" data-animate="fade-up" data-delay="100">
+          <div class="product-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="6" width="32" height="36" rx="4"/><line x1="14" y1="14" x2="34" y2="14"/><line x1="14" y1="20" x2="28" y2="20"/><circle cx="30" cy="32" r="6"/><path d="M28 32l2 2 4-4"/></svg>
+          </div>
+          <h3>Bellure Booking</h3>
+          <p>Een boekingswidget die je op elke website kunt plaatsen. Klanten kiezen behandeling, medewerker en tijd. Met iDEAL betaling en agenda voor jou.</p>
+          <a href="#booking" class="product-link">
+            Ontdek meer
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/boekingen" class="product-link" style="margin-top: 0.5rem;">
+            Meer info
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section class="section features" id="features">
-    <div class="section-glow section-glow--left"></div>
+  <!-- Website section -->
+  <section class="section section--alt" id="website">
     <div class="section-inner">
-      <div class="section-header-center" data-reveal>
-        <p class="section-eyebrow">Mogelijkheden</p>
-        <h2 class="section-title-large">Alles wat je salon nodig heeft.<br /><em>Niets meer.</em></h2>
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">Bellure Website</span>
+        <h2 class="section-title">Een website die voelt<br><em>als jouw salon.</em></h2>
+        <p class="section-desc">Geen templates. Geen standaard oplossingen. Wij bouwen een site die de sfeer, stijl en persoonlijkheid van jouw salon vastlegt.</p>
       </div>
-
-      <div class="features-showcase">
-        <div class="feature-block" data-reveal>
-          <div class="feature-block-bg"></div>
-          <div class="feature-block-inner">
-            <div class="feature-block-header">
-              <span class="feature-block-num">01</span>
-              <div class="feature-block-line"></div>
-            </div>
-            <h3 class="feature-block-title">Online boeken</h3>
-            <p class="feature-block-desc">Klanten kiezen hun behandeling, medewerker en tijdstip in enkele seconden. Een boekingswidget die naadloos opgaat in jouw website. 24 uur per dag, 7 dagen per week.</p>
-            <div class="feature-block-visual">
-              <div class="feature-mock feature-mock--calendar">
-                <div class="mock-row"><span class="mock-dot mock-dot--gold"></span><span class="mock-line"></span></div>
-                <div class="mock-row"><span class="mock-dot"></span><span class="mock-line mock-line--short"></span></div>
-                <div class="mock-row"><span class="mock-dot mock-dot--gold"></span><span class="mock-line"></span></div>
-                <div class="mock-row"><span class="mock-dot"></span><span class="mock-line mock-line--med"></span></div>
-              </div>
-            </div>
-          </div>
+      <div class="features-grid">
+        <div class="feature" data-animate="fade-up" data-delay="0">
+          <div class="feature-num">01</div>
+          <h4>Op maat ontworpen</h4>
+          <p>Elk ontwerp is uniek. Wij kijken naar jouw salon, jouw stijl, jouw klanten en bouwen daar iets moois omheen.</p>
         </div>
-
-        <div class="feature-block feature-block--dark" data-reveal>
-          <div class="feature-block-bg"></div>
-          <div class="feature-block-inner">
-            <div class="feature-block-header">
-              <span class="feature-block-num">02</span>
-              <div class="feature-block-line"></div>
-            </div>
-            <h3 class="feature-block-title">Betalingen</h3>
-            <p class="feature-block-desc">Aanbetalingen of volledige betaling via iDEAL. Geld gaat direct naar jouw rekening. Minder no-shows, meer zekerheid, nul gedoe.</p>
-            <div class="feature-block-visual">
-              <div class="feature-mock feature-mock--payment">
-                <div class="mock-amount">€ 145<span class="mock-amount-label">aanbetaling</span></div>
-                <div class="mock-progress"><div class="mock-progress-bar"></div></div>
-                <div class="mock-ideal">iDEAL</div>
-              </div>
-            </div>
-          </div>
+        <div class="feature" data-animate="fade-up" data-delay="50">
+          <div class="feature-num">02</div>
+          <h4>Razendsnel</h4>
+          <p>Snelle laadtijden, geoptimaliseerd voor mobiel. Hogere score bij Google, geen frustratie voor bezoekers.</p>
         </div>
-
-        <div class="feature-block" data-reveal>
-          <div class="feature-block-bg"></div>
-          <div class="feature-block-inner">
-            <div class="feature-block-header">
-              <span class="feature-block-num">03</span>
-              <div class="feature-block-line"></div>
-            </div>
-            <h3 class="feature-block-title">Agenda</h3>
-            <p class="feature-block-desc">Overzichtelijk dagschema per medewerker. Sleep afspraken, blokkeer pauzes, zie in een oogopslag wat er speelt. Alles op een scherm.</p>
-            <div class="feature-block-visual">
-              <div class="feature-mock feature-mock--agenda">
-                <div class="mock-timeslot mock-timeslot--booked" style="top: 10%; height: 25%"><span>Balayage</span></div>
-                <div class="mock-timeslot mock-timeslot--free" style="top: 40%; height: 15%"><span>Beschikbaar</span></div>
-                <div class="mock-timeslot mock-timeslot--booked" style="top: 60%; height: 20%"><span>Knippen</span></div>
-              </div>
-            </div>
-          </div>
+        <div class="feature" data-animate="fade-up" data-delay="100">
+          <div class="feature-num">03</div>
+          <h4>Zelf aanpasbaar</h4>
+          <p>Prijzen wijzigen, openingstijden aanpassen, foto's uploaden. Simpel, via een duidelijk beheerpaneel.</p>
         </div>
+        <div class="feature" data-animate="fade-up" data-delay="150">
+          <div class="feature-num">04</div>
+          <h4>Altijd bijgewerkt</h4>
+          <p>Hosting, onderhoud, beveiliging en updates. Wij zorgen ervoor dat je site altijd draait.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="feature-block feature-block--dark" data-reveal>
-          <div class="feature-block-bg"></div>
-          <div class="feature-block-inner">
-            <div class="feature-block-header">
-              <span class="feature-block-num">04</span>
-              <div class="feature-block-line"></div>
-            </div>
-            <h3 class="feature-block-title">Klantenbeheer</h3>
-            <p class="feature-block-desc">Compleet klantprofiel met boekingsgeschiedenis en voorkeuren. Ken je klant bij naam, personaliseer elke ervaring.</p>
-            <div class="feature-block-visual">
-              <div class="feature-mock feature-mock--clients">
-                <div class="mock-avatar">S</div>
-                <div class="mock-client-info">
-                  <span class="mock-client-name">Sophie de Vries</span>
-                  <span class="mock-client-visits">12 bezoeken</span>
-                </div>
-              </div>
-            </div>
+  <!-- Booking section -->
+  <section class="section" id="booking">
+    <div class="section-inner">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">Bellure Booking</span>
+        <h2 class="section-title">Online boeken dat<br><em>gewoon werkt.</em></h2>
+        <p class="section-desc">Klanten kiezen hun behandeling, medewerker en tijdstip. Betalen direct via iDEAL. En jij ziet alles in je agenda.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+          <a href="https://mijn.bellure.nl/admin/registreren" class="btn btn--dark btn--lg">30 dagen gratis proberen</a>
+          <a href="/boekingen" class="btn btn--ghost btn--lg">Bekijk alle functies &rarr;</a>
+        </div>
+      </div>
+      <div class="booking-features">
+        <div class="booking-feature" data-animate="fade-up" data-delay="0">
+          <div class="booking-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
           </div>
+          <h4>Slimme agenda</h4>
+          <p>Per medewerker, per dag. Sleep afspraken, blokkeer pauzes, zie in een oogopslag wat er speelt.</p>
+        </div>
+        <div class="booking-feature" data-animate="fade-up" data-delay="50">
+          <div class="booking-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+          </div>
+          <h4>Betalingen via iDEAL</h4>
+          <p>Aanbetaling of volledig bedrag. Geld gaat direct naar jouw rekening. Minder no-shows.</p>
+        </div>
+        <div class="booking-feature" data-animate="fade-up" data-delay="100">
+          <div class="booking-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          </div>
+          <h4>Past overal</h4>
+          <p>De widget werkt op elke website. Heb je al een site? Dan plaatsen wij het systeem daarop.</p>
+        </div>
+        <div class="booking-feature" data-animate="fade-up" data-delay="150">
+          <div class="booking-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h4>Klantenbeheer</h4>
+          <p>Zie wie er komt, hoe vaak, en welke behandelingen ze kiezen. Ken je klant bij naam.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- How it works -->
-  <section class="section section--how" id="how">
-    <div class="section-glow section-glow--right"></div>
+  <section class="section section--alt" id="werkwijze">
     <div class="section-inner">
-      <div class="section-header-center" data-reveal>
-        <p class="section-eyebrow">Hoe het werkt</p>
-        <h2 class="section-title-large">Live in drie stappen.<br /><em>Zo simpel is het.</em></h2>
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">Werkwijze</span>
+        <h2 class="section-title">Van gesprek tot live.<br><em>In drie stappen.</em></h2>
       </div>
-
       <div class="steps">
-        <div class="step" data-reveal>
-          <div class="step-number-wrap">
-            <span class="step-number">1</span>
-            <div class="step-connector"></div>
-          </div>
-          <div class="step-card">
-            <h3>Kennismaking</h3>
-            <p>We bespreken jouw salon, je wensen en je werkwijze. Geen technisch jargon, gewoon een goed gesprek over wat jij nodig hebt.</p>
+        <div class="step" data-animate="fade-up" data-delay="0">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Kennismaking</h4>
+            <p>We bespreken je salon, je wensen en je werkwijze. Geen technisch jargon, gewoon een goed gesprek.</p>
           </div>
         </div>
-
-        <div class="step" data-reveal>
-          <div class="step-number-wrap">
-            <span class="step-number">2</span>
-            <div class="step-connector"></div>
-          </div>
-          <div class="step-card">
-            <h3>Installatie & styling</h3>
-            <p>Wij koppelen Bellure aan je website en stemmen het design af op jouw huisstijl. Kleuren, fonts, sfeer — alles op maat.</p>
+        <div class="step-line" data-animate="grow"></div>
+        <div class="step" data-animate="fade-up" data-delay="100">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Ontwerp & bouw</h4>
+            <p>Wij gaan aan de slag. Je krijgt een preview te zien, geeft feedback, en wij passen aan tot het past.</p>
           </div>
         </div>
-
-        <div class="step" data-reveal>
-          <div class="step-number-wrap">
-            <span class="step-number">3</span>
-          </div>
-          <div class="step-card">
-            <h3>Live & boeken</h3>
-            <p>Je bent live. Klanten boeken direct online, betalingen lopen automatisch, en jij houdt overzicht via je eigen dashboard.</p>
+        <div class="step-line" data-animate="grow"></div>
+        <div class="step" data-animate="fade-up" data-delay="200">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Live</h4>
+            <p>Je site en boekingssysteem gaan live. Klanten boeken, betalingen lopen, en jij houdt overzicht.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Quote with parallax -->
-  <section class="section section--accent quote-section">
-    <div class="quote-bg-text" aria-hidden="true" data-parallax-speed="0.015">Bellure</div>
+  <!-- PRICING — Interactive configurator -->
+  <section class="section section--pricing" id="prijzen">
+    <div class="pricing-gradient"></div>
     <div class="section-inner">
-      <blockquote class="quote" data-reveal>
-        <p class="quote-text">"Jouw salon verdient meer dan een boekingssysteem. Het verdient een ervaring die even luxe is als jouw werk."</p>
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- For salons -->
-  <section class="section salons" id="salons">
-    <div class="section-glow section-glow--center"></div>
-    <div class="section-inner">
-      <div class="section-header-center" data-reveal>
-        <p class="section-eyebrow">Voor salons</p>
-        <h2 class="section-title-large">Gebouwd voor schoonheid,<br /><em>tot in het kleinste detail.</em></h2>
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">Prijzen</span>
+        <h2 class="section-title">Stel je pakket samen.<br><em>Betaal alleen wat je gebruikt.</em></h2>
+        <p class="section-desc">Vink aan wat je nodig hebt. Je ziet direct wat het kost. Maandelijks opzegbaar, geen verborgen kosten.</p>
       </div>
 
-      <div class="salons-grid">
-        <div class="salon-card" data-reveal>
-          <div class="salon-card-icon">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M16 4l3 6h7l-5.5 4.5 2 7L16 17l-6.5 4.5 2-7L6 10h7z"/></svg>
-          </div>
-          <h3>Jouw merk, jouw stijl</h3>
-          <p>Bellure past zich aan jouw salon aan. Kleuren, lettertype, sfeer — alles wordt afgestemd zodat het voelt als een verlengstuk van je merk.</p>
-          <div class="salon-card-shine"></div>
+      <!-- Billing toggle -->
+      <div class="billing-toggle" data-animate="fade-up" data-delay="50">
+        <div class="toggle-pill" id="billingToggle">
+          <button class="toggle-option" data-value="month" id="toggleMonth">Per maand</button>
+          <button class="toggle-option toggle-option--active" data-value="year" id="toggleYear">Per jaar</button>
+          <div class="toggle-slider" id="toggleSlider"></div>
         </div>
-
-        <div class="salon-card" data-reveal>
-          <div class="salon-card-icon">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="16" cy="16" r="10"/><path d="M12 16l3 3 5-6"/></svg>
-          </div>
-          <h3>Geen technische kennis nodig</h3>
-          <p>Wij regelen alles: installatie, koppeling, design. Jij opent je laptop en het werkt. Focus op waar jij goed in bent.</p>
-          <div class="salon-card-shine"></div>
-        </div>
-
-        <div class="salon-card" data-reveal>
-          <div class="salon-card-icon">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="6" y="6" width="20" height="20" rx="3"/><line x1="6" y1="16" x2="26" y2="16"/><line x1="16" y1="6" x2="16" y2="26"/></svg>
-          </div>
-          <h3>Eerlijk en transparant</h3>
-          <p>Geen verborgen kosten, geen langlopende contracten. Maandelijks opzegbaar. Als het niet bevalt, stop je. Zo simpel.</p>
-          <div class="salon-card-shine"></div>
-        </div>
-
-        <div class="salon-card" data-reveal>
-          <div class="salon-card-icon">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M16 28c6-4 10-8 10-14a6 6 0 00-10-4.5A6 6 0 006 14c0 6 4 10 10 14z"/></svg>
-          </div>
-          <h3>Persoonlijke begeleiding</h3>
-          <p>Geen chatbot, geen ticketnummer. Een echt team dat je salon kent, meedenkt en bereikbaar is wanneer je het nodig hebt.</p>
-          <div class="salon-card-shine"></div>
-        </div>
+        <span class="toggle-badge">20% korting bij jaarbetaling</span>
       </div>
-      <div class="scroll-dots" id="salonDots">
-        <span class="scroll-dot scroll-dot--active"></span>
-        <span class="scroll-dot"></span>
-        <span class="scroll-dot"></span>
-        <span class="scroll-dot"></span>
+
+      <!-- Pricing configurator -->
+      <div class="pricing-configurator" data-animate="fade-up" data-delay="100">
+        <!-- Left: options -->
+        <div class="config-options">
+          <!-- Base package (always on) -->
+          <div class="config-card config-card--base">
+            <div class="config-card-header">
+              <div class="config-check config-check--locked">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="config-card-info">
+                <h4>Jouw eigen website</h4>
+                <p>Een professionele website die past bij jouw salon</p>
+              </div>
+              <div class="config-card-price">
+                <span class="config-price" data-monthly="24.99" data-yearly="19.99">€ 19,99</span>
+                <span class="config-period">/mnd</span>
+              </div>
+            </div>
+            <div class="config-card-details">
+              <span>Op maat gemaakte website in jouw stijl</span>
+              <span>Je eigen domeinnaam (bijv. jouwsalon.nl)</span>
+              <span>Werkt perfect op telefoon en computer</span>
+              <span>Wij houden alles draaiende en up-to-date</span>
+              <span>Prijzen en openingstijden zelf aanpassen</span>
+            </div>
+            <div class="config-setup">Eenmalige opstartkosten: <strong>€ 149</strong> (pas na akkoord)</div>
+          </div>
+
+          <!-- Booking add-on -->
+          <div class="config-card config-card--expandable" data-addon="booking">
+            <label class="config-card-header">
+              <input type="checkbox" class="config-checkbox" id="addonBooking" checked>
+              <div class="config-check">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="config-card-info">
+                <h4>Online boeken</h4>
+                <p>Klanten boeken zelf een afspraak via je website</p>
+              </div>
+              <div class="config-card-price">
+                <span class="config-price" data-monthly="18.74" data-yearly="14.99">€ 14,99</span>
+                <span class="config-period">/mnd</span>
+              </div>
+            </label>
+            <button class="config-expand-btn" aria-label="Meer informatie">
+              <span>Wat zit erin?</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="config-expand">
+              <div class="config-expand-inner">
+                <div class="expand-item">
+                  <strong>Boekingswidget op je site</strong>
+                  <span>Een mooi formulier op je website waar klanten direct een afspraak kunnen maken. Ze kiezen een behandeling, medewerker en tijd die hen uitkomt.</span>
+                </div>
+                <div class="expand-item">
+                  <strong>Agenda voor jou</strong>
+                  <span>Je ziet al je afspraken overzichtelijk per dag en per medewerker. Slepen om te verplaatsen, pauzes blokkeren, alles op een scherm.</span>
+                </div>
+                <div class="expand-item">
+                  <strong>Aanbetaling via iDEAL</strong>
+                  <span>Klanten betalen direct een deel vooraf. Geld komt op jouw rekening. Minder no-shows, meer zekerheid.</span>
+                </div>
+                <div class="expand-item">
+                  <strong>Klantoverzicht</strong>
+                  <span>Zie wie er komt, hoe vaak, en welke behandelingen ze kiezen. Handig om je vaste klanten te kennen.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CMS Pro -->
+          <div class="config-card config-card--expandable" data-addon="cms">
+            <label class="config-card-header">
+              <input type="checkbox" class="config-checkbox" id="addonCms">
+              <div class="config-check">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="config-card-info">
+                <h4>Zelf je site aanpassen</h4>
+                <p>Teksten, foto's en meer wijzigen wanneer jij wilt</p>
+              </div>
+              <div class="config-card-price">
+                <span class="config-price" data-monthly="4.99" data-yearly="3.99">€ 3,99</span>
+                <span class="config-period">/mnd</span>
+              </div>
+            </label>
+            <button class="config-expand-btn" aria-label="Meer informatie">
+              <span>Wat zit erin?</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="config-expand">
+              <div class="config-expand-inner">
+                <div class="expand-item">
+                  <strong>Beheerpaneel</strong>
+                  <span>Een simpel scherm waar je inlogt om aanpassingen te doen. Geen technische kennis nodig.</span>
+                </div>
+                <div class="expand-item">
+                  <strong>Teksten wijzigen</strong>
+                  <span>Beschrijvingen, titels, alles wat op je site staat kun je zelf aanpassen. Zie direct het resultaat.</span>
+                </div>
+                <div class="expand-item">
+                  <strong>Foto's uploaden</strong>
+                  <span>Nieuwe foto's van je salon, team of werk? Upload ze zelf. Ze worden automatisch goed weergegeven.</span>
+                </div>
+                <p class="expand-note">Zonder deze optie kun je alleen prijzen en openingstijden aanpassen. Voor alle andere wijzigingen doen wij dat voor je.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Premium support -->
+          <div class="config-card config-card--expandable" data-addon="support">
+            <label class="config-card-header">
+              <input type="checkbox" class="config-checkbox" id="addonSupport">
+              <div class="config-check">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="config-card-info">
+                <h4>Persoonlijke begeleiding</h4>
+                <p>Een vast aanspreekpunt dat je salon kent</p>
+              </div>
+              <div class="config-card-price">
+                <span class="config-price" data-monthly="12.49" data-yearly="9.99">€ 9,99</span>
+                <span class="config-period">/mnd</span>
+              </div>
+            </label>
+            <button class="config-expand-btn" aria-label="Meer informatie">
+              <span>Wat zit erin?</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="config-expand">
+              <div class="config-expand-inner">
+                <div class="expand-item">
+                  <strong>Vast contactpersoon</strong>
+                  <span>Je belt of appt altijd met dezelfde persoon. Die kent je salon en weet wat er speelt.</span>
+                </div>
+                <div class="expand-item">
+                  <strong>Bereikbaar via telefoon, WhatsApp of Teams</strong>
+                  <span>Geen ticketsysteem, geen wachtrij. Gewoon een bericht sturen en je krijgt antwoord.</span>
+                </div>
+                <div class="expand-item">
+                  <strong>Reactie binnen 24 uur</strong>
+                  <span>Op werkdagen reageren we altijd binnen een dag. Meestal sneller.</span>
+                </div>
+                <p class="expand-note">Zonder deze optie kun je ons bereiken via e-mail. We reageren dan binnen 48 tot 72 uur.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SEO / Vindbaarheid -->
+          <div class="config-card config-card--seo">
+            <div class="config-card-header config-card-header--seo">
+              <div class="config-card-info">
+                <h4>Vindbaarheid in Google</h4>
+                <p>Zorgen dat klanten in jouw buurt je salon vinden</p>
+              </div>
+              <button class="config-expand-btn config-expand-btn--inline" data-target="seo-info" aria-label="Meer informatie">
+                <span>Wat is dit?</span>
+                <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="config-expand" id="seo-info">
+              <div class="config-expand-inner">
+                <p class="expand-explainer">Als iemand zoekt op "kapper" of "nagelstudio" in jouw plaats, wil je dat jouw salon bovenaan staat. Dat noemen we vindbaarheid (SEO). Hoe beter je scoort, hoe meer nieuwe klanten je vanzelf binnenkrijgt.</p>
+              </div>
+            </div>
+            <div class="config-seo-options">
+              <label class="seo-option">
+                <input type="radio" name="seo" value="none" class="seo-radio" checked>
+                <div class="seo-option-content">
+                  <div>
+                    <span class="seo-option-label">Niet nodig</span>
+                    <span class="seo-option-desc">Ik regel dit zelf of heb het niet nodig</span>
+                  </div>
+                  <span class="seo-option-price">€ 0</span>
+                </div>
+              </label>
+              <label class="seo-option">
+                <input type="radio" name="seo" value="basic" class="seo-radio">
+                <div class="seo-option-content">
+                  <div>
+                    <span class="seo-option-label">Basis</span>
+                    <span class="seo-option-desc">We zetten je Google Bedrijfsprofiel goed neer en controleren maandelijks of alles klopt</span>
+                  </div>
+                  <span class="seo-option-price" data-monthly="6.24" data-yearly="4.99">€ 4,99/mnd</span>
+                </div>
+              </label>
+              <label class="seo-option">
+                <input type="radio" name="seo" value="plus" class="seo-radio">
+                <div class="seo-option-content">
+                  <div>
+                    <span class="seo-option-label">Uitgebreid</span>
+                    <span class="seo-option-desc">We onderzoeken waar jouw klanten op zoeken, passen je teksten aan en helpen je meer Google reviews te krijgen. Maandelijks rapportje.</span>
+                  </div>
+                  <span class="seo-option-price" data-monthly="12.49" data-yearly="9.99">€ 9,99/mnd</span>
+                </div>
+              </label>
+              <label class="seo-option">
+                <input type="radio" name="seo" value="pro" class="seo-radio">
+                <div class="seo-option-content">
+                  <div>
+                    <span class="seo-option-label">Volledig</span>
+                    <span class="seo-option-desc">Alles van Uitgebreid, plus artikelen schrijven, andere sites naar jou laten linken en elk kwartaal samen de strategie bijstellen</span>
+                  </div>
+                  <span class="seo-option-price">Op aanvraag</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: summary -->
+        <div class="config-summary">
+          <div class="config-summary-card">
+            <h3>Jouw pakket</h3>
+            <div class="summary-items" id="summaryItems">
+              <!-- Filled by JS -->
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-setup">
+              <span>Eenmalig</span>
+              <span id="summarySetup">€ 149</span>
+            </div>
+            <div class="summary-total">
+              <span>Per maand</span>
+              <div class="summary-total-price">
+                <span class="total-amount" id="totalAmount">€ 34,98</span>
+              </div>
+            </div>
+            <div class="summary-yearly" id="summaryYearly">
+              <span>Per jaar</span>
+              <span id="yearlyAmount">€ 419,76</span>
+            </div>
+            <a href="#contact" class="btn btn--dark btn--lg summary-cta">
+              Neem contact op
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <p class="summary-note">Maandelijks opzegbaar. Geen verplichtingen.</p>
+          </div>
+        </div>
+
+        <!-- Booking standalone note (inside grid so summary stays sticky) -->
+        <div class="standalone-note" data-animate="fade-up">
+        <div class="standalone-note-inner">
+          <div class="standalone-note-content">
+            <h4>Heb je al een website?</h4>
+            <p>Het boekingssysteem is ook los beschikbaar. We plaatsen de boekingswidget op je bestaande site, volledig in jouw huisstijl.</p>
+            <a href="https://salon-amara.bellure.nl#booking" target="_blank" rel="noopener" class="standalone-link">
+              Bekijk hoe de widget werkt
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="standalone-footer">
+            <span class="standalone-label">Booking los, vanaf</span>
+            <div class="standalone-price">
+              <span class="standalone-price-amount" data-monthly="37.48" data-yearly="29.98">€ 29,98</span>
+              <span class="standalone-price-period">/mnd</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section cta-section" id="contact">
-    <div class="cta-bg">
-      <div class="cta-gradient cta-gradient--1"></div>
-      <div class="cta-gradient cta-gradient--2"></div>
-    </div>
-    <div class="section-inner cta-inner">
-      <p class="section-eyebrow" data-reveal style="text-align:center">Contact</p>
-      <h2 class="cta-title" data-reveal>Klaar om je salon naar<br /><em>een hoger niveau</em> te tillen?</h2>
-      <p class="cta-subtitle" data-reveal>Neem contact op en ontdek wat Bellure voor jouw salon kan betekenen. Geen verplichtingen, geen druk.</p>
-      <div data-reveal>
-        <a href="mailto:hello@bellure.nl" class="btn btn--glow btn--large btn--glow-border">Neem contact op</a>
+  <section class="section section--cta" id="contact">
+    <div class="section-inner">
+      <div class="cta-content" data-animate="fade-up">
+        <h2 class="section-title">Benieuwd wat Bellure<br><em>voor jouw salon kan doen?</em></h2>
+        <p class="section-desc">Stuur ons een bericht. We plannen een kort gesprek in en bespreken de mogelijkheden. Vrijblijvend, zonder druk.</p>
+        <div class="cta-actions">
+          <a href="mailto:hello@bellure.nl" class="btn btn--white btn--lg">
+            Stuur een mail
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -375,17 +687,25 @@
       <div class="footer-top">
         <div class="footer-brand">
           <span class="footer-logo">Bellure</span>
-          <p class="footer-tagline">Luxe boekingen voor de beautybranche</p>
+          <p>Websites & boekingen voor salons</p>
         </div>
         <div class="footer-links">
-          <a href="#features">Mogelijkheden</a>
-          <a href="#how">Hoe het werkt</a>
-          <a href="#salons">Voor salons</a>
-          <a href="mailto:hello@bellure.nl">Contact</a>
+          <div class="footer-col">
+            <h5>Product</h5>
+            <a href="#website">Website</a>
+            <a href="#booking">Booking</a>
+            <a href="#prijzen">Prijzen</a>
+          </div>
+          <div class="footer-col">
+            <h5>Bedrijf</h5>
+            <a href="#contact">Contact</a>
+            <a href="/voorwaarden">Voorwaarden</a>
+            <a href="/privacy">Privacy</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>Een product van <a href="https://ensalabs.nl" target="_blank" rel="noopener">Ensalabs</a></p>
+        <p>Bellure is een product van <a href="https://ensalabs.nl" target="_blank" rel="noopener">Ensalabs</a></p>
       </div>
     </div>
   </footer>
