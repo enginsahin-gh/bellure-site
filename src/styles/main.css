@@ -1202,15 +1202,29 @@ input[type="checkbox"], input[type="radio"] { position: absolute; opacity: 0; wi
 /* ========================================
    ANIMATIONS
    ======================================== */
+/* Elements visible by default. JS adds .js-animate-ready to enable animations */
 [data-animate] {
+  opacity: 1;
+  transform: none;
+}
+
+.js-animate-ready [data-animate] {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
 
-[data-animate].visible {
+.js-animate-ready [data-animate].visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-animate-ready [data-animate] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ========================================

@@ -5,20 +5,30 @@
 // ---- Scroll reveal ----
 const animatedEls = document.querySelectorAll('[data-animate]');
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay) || 0;
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
-);
+if ('IntersectionObserver' in window && animatedEls.length > 0) {
+  document.documentElement.classList.add('js-animate-ready');
 
-animatedEls.forEach((el) => observer.observe(el));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay) || 0;
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+  );
+
+  animatedEls.forEach((el) => observer.observe(el));
+
+  // Safety: if elements still hidden after 3s, disable animations entirely
+  setTimeout(() => {
+    const stillHidden = document.querySelector('[data-animate]:not(.visible)');
+    if (stillHidden) document.documentElement.classList.remove('js-animate-ready');
+  }, 3000);
+}
 
 // ---- Nav scroll ----
 const nav = document.getElementById('nav');
