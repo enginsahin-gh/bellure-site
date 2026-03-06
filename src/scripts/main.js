@@ -137,7 +137,7 @@ const toggleYear = document.getElementById('toggleYear');
 const toggleSlider = document.getElementById('toggleSlider');
 const billingToggle = document.getElementById('billingToggle');
 
-let isYearly = true;
+let isYearly = false;
 
 function positionSlider() {
   if (!toggleSlider || !toggleMonth || !toggleYear) return;
@@ -165,22 +165,22 @@ window.addEventListener('resize', positionSlider);
 
 // ---- Pricing state ----
 const PRICES = {
-  base:    { monthly: 24.99, yearly: 19.99 },
-  booking: { monthly: 18.74, yearly: 14.99 },
-  cms:     { monthly: 4.99,  yearly: 3.99 },
-  seo_basic: { monthly: 6.24, yearly: 4.99 },
-  seo_plus:  { monthly: 12.49, yearly: 9.99 },
-  support: { monthly: 12.49, yearly: 9.99 },
+  base:    { monthly: 14.95, yearly: 11.96 },
+  booking: { monthly: 19.95, yearly: 15.96 },
+  cms:     { monthly: 3.95,  yearly: 3.16 },
+  email:   { monthly: 3.95,  yearly: 3.16 },
+  seo_basic: { monthly: 0, yearly: 0 },
+  support: { monthly: 9.99, yearly: 7.99 },
 };
 
 function getActiveAddons() {
   const addons = ['base']; // always included
   if (document.getElementById('addonBooking')?.checked) addons.push('booking');
   if (document.getElementById('addonCms')?.checked) addons.push('cms');
+  if (document.getElementById('addonEmail')?.checked) addons.push('email');
 
   const seoVal = document.querySelector('input[name="seo"]:checked')?.value;
   if (seoVal === 'basic') addons.push('seo_basic');
-  else if (seoVal === 'plus') addons.push('seo_plus');
   // seo_pro = op aanvraag, no price
 
   if (document.getElementById('addonSupport')?.checked) addons.push('support');
@@ -216,7 +216,10 @@ function updatePricing() {
   document.querySelectorAll('.seo-option-price').forEach((el) => {
     const m = el.dataset.monthly;
     const y = el.dataset.yearly;
-    if (m && y) el.textContent = formatPrice(parseFloat(isYearly ? y : m)) + '/mnd';
+    if (m && y) {
+      const value = parseFloat(isYearly ? y : m);
+      el.textContent = value === 0 ? 'Gratis' : (formatPrice(value) + '/mnd');
+    }
   });
 
   // Update standalone price
@@ -243,25 +246,29 @@ function updatePricing() {
     { name: 'Website', key: 'base', active: true },
     { name: 'Online boeken', key: 'booking', active: addons.includes('booking') },
     { name: 'Zelf aanpassen', key: 'cms', active: addons.includes('cms') },
-    { name: 'Vindbaarheid Basis', key: 'seo_basic', active: addons.includes('seo_basic') },
-    { name: 'Vindbaarheid Uitgebreid', key: 'seo_plus', active: addons.includes('seo_plus') },
-    { name: 'Persoonlijke begeleiding', key: 'support', active: addons.includes('support') },
+    { name: 'Zakelijke e-mail', key: 'email', active: addons.includes('email') },
+    { name: 'SEO Goed', key: 'seo_basic', active: addons.includes('seo_basic') },
+    { name: 'Premium support', key: 'support', active: addons.includes('support') },
   ];
 
   // Only show active items + SEO Pro if selected
   summaryEl.innerHTML = items
     .filter(i => i.active)
-    .map(i => `
+    .map(i => {
+      const value = PRICES[i.key][period];
+      const label = value === 0 ? 'Gratis' : formatPrice(value);
+      return `
       <div class="summary-item">
         <span class="summary-item-name">${i.name}</span>
-        <span class="summary-item-price">${formatPrice(PRICES[i.key][period])}</span>
+        <span class="summary-item-price">${label}</span>
       </div>
-    `).join('');
+    `;
+    }).join('');
 
   if (hasSeoProRequest) {
     summaryEl.innerHTML += `
       <div class="summary-item">
-        <span class="summary-item-name">SEO Pro</span>
+        <span class="summary-item-name">SEO Best</span>
         <span class="summary-item-price">Op aanvraag</span>
       </div>
     `;

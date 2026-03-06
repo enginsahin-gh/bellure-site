@@ -96,7 +96,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600family=Outfit:wght@300;400;500;600&family=Bodoni+Moda:opsz,ital,wght@6..96,0,400;6..96,0,500;6..96,0,600;6..96,1,400;6..96,1,500family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles/main.css" />
 </head>
 <body>
@@ -158,51 +158,6 @@
       </div>
     </div>
 
-    <!-- Browser mockup -->
-    <div class="hero-visual">
-      <div class="hero-browser">
-        <div class="browser-bar">
-          <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">salonamara.nl</div>
-          <div class="browser-dots-spacer"></div>
-        </div>
-        <div class="browser-screen">
-          <div class="screen-content">
-            <div class="screen-nav">
-              <span class="screen-logo">Salon Amara</span>
-              <div class="screen-nav-links"><span>Home</span><span>Behandelingen</span><span>Team</span><span>Boeken</span></div>
-            </div>
-            <div class="screen-hero">
-              <span class="screen-hero-tag">Welkom bij</span>
-              <span class="screen-hero-title">Salon Amara</span>
-              <span class="screen-hero-sub">Jouw moment van rust in Leiden</span>
-              <span class="screen-hero-btn">Boek een afspraak</span>
-            </div>
-          </div>
-        </div>
-        <a href="https://salon-amara.bellure.nl" target="_blank" rel="noopener" class="browser-link">
-          Bekijk deze voorbeeldsite
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 10.5l7-7m0 0H4.5m6 0v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-      <!-- Floating cards -->
-      <div class="float-card float-card--1">
-        <div class="float-card-icon float-card-icon--green">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div>
-          <span class="float-card-title">Afspraak bevestigd</span>
-          <span class="float-card-meta">Balayage & Knippen, 14:30</span>
-        </div>
-      </div>
-      <div class="float-card float-card--2">
-        <div class="float-card-icon float-card-icon--gold">€</div>
-        <div>
-          <span class="float-card-title">Betaling ontvangen</span>
-          <span class="float-card-meta">€ 36,25 aanbetaling</span>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- Logos / trust -->
@@ -259,10 +214,6 @@
             Ontdek meer
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="/boekingen" class="product-link" style="margin-top: 0.5rem;">
-            Meer info
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
         </div>
       </div>
     </div>
@@ -297,6 +248,12 @@
           <h4>Altijd bijgewerkt</h4>
           <p>Hosting, onderhoud, beveiliging en updates. Wij zorgen ervoor dat je site altijd draait.</p>
         </div>
+      </div>
+      <div class="section-example" data-animate="fade-up" data-delay="200">
+        <a href="https://salon-amara.bellure.nl" target="_blank" rel="noopener" class="example-link">
+          Bekijk een voorbeeldsite
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8m0 0l-3-3m3 3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -394,8 +351,8 @@
       <!-- Billing toggle -->
       <div class="billing-toggle" data-animate="fade-up" data-delay="50">
         <div class="toggle-pill" id="billingToggle">
-          <button class="toggle-option" data-value="month" id="toggleMonth">Per maand</button>
-          <button class="toggle-option toggle-option--active" data-value="year" id="toggleYear">Per jaar</button>
+          <button class="toggle-option toggle-option--active" data-value="month" id="toggleMonth">Per maand</button>
+          <button class="toggle-option" data-value="year" id="toggleYear">Per jaar</button>
           <div class="toggle-slider" id="toggleSlider"></div>
         </div>
         <span class="toggle-badge">20% korting bij jaarbetaling</span>
@@ -416,7 +373,7 @@
                 <p>Een professionele website die past bij jouw salon</p>
               </div>
               <div class="config-card-price">
-                <span class="config-price" data-monthly="24.99" data-yearly="19.99">€ 19,99</span>
+                <span class="config-price" data-monthly="14.95" data-yearly="11.96">€ 14,95</span>
                 <span class="config-period">/mnd</span>
               </div>
             </div>
@@ -442,7 +399,7 @@
                 <p>Klanten boeken zelf een afspraak via je website</p>
               </div>
               <div class="config-card-price">
-                <span class="config-price" data-monthly="18.74" data-yearly="14.99">€ 14,99</span>
+                <span class="config-price" data-monthly="19.95" data-yearly="15.96">€ 19,95</span>
                 <span class="config-period">/mnd</span>
               </div>
             </label>
@@ -484,7 +441,7 @@
                 <p>Teksten, foto's en meer wijzigen wanneer jij wilt</p>
               </div>
               <div class="config-card-price">
-                <span class="config-price" data-monthly="4.99" data-yearly="3.99">€ 3,99</span>
+                <span class="config-price" data-monthly="3.95" data-yearly="3.16">€ 3,95</span>
                 <span class="config-period">/mnd</span>
               </div>
             </label>
@@ -511,6 +468,44 @@
             </div>
           </div>
 
+          <!-- Email add-on -->
+          <div class="config-card config-card--expandable" data-addon="email">
+            <label class="config-card-header">
+              <input type="checkbox" class="config-checkbox" id="addonEmail">
+              <div class="config-check">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="config-card-info">
+                <h4>Zakelijke e-mail</h4>
+                <p>Een professioneel e-mailadres op je eigen domein</p>
+              </div>
+              <div class="config-card-price">
+                <span class="config-price" data-monthly="3.95" data-yearly="3.16">€ 3,95</span>
+                <span class="config-period">/mnd</span>
+              </div>
+            </label>
+            <button class="config-expand-btn" aria-label="Meer informatie">
+              <span>Wat zit erin?</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="config-expand">
+              <div class="config-expand-inner">
+                <div class="expand-item">
+                  <strong>Jouw eigen adres</strong>
+                  <span>Bijvoorbeeld <em>info@jouwsalon.nl</em> of <em>contact@jouwsalon.nl</em>.</span>
+                </div>
+                <div class="expand-item">
+                  <strong>Werkt op telefoon en desktop</strong>
+                  <span>Gebruik je mailbox in Gmail, Apple Mail of Outlook.</span>
+                </div>
+                <div class="expand-item">
+                  <strong>Wij regelen de technische setup</strong>
+                  <span>Geen gedoe met DNS of instellingen. Alles wordt netjes voor je ingesteld.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Premium support -->
           <div class="config-card config-card--expandable" data-addon="support">
             <label class="config-card-header">
@@ -519,11 +514,11 @@
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="config-card-info">
-                <h4>Persoonlijke begeleiding</h4>
-                <p>Een vast aanspreekpunt dat je salon kent</p>
+                <h4>Premium support</h4>
+                <p>Snelle hulp met een vast aanspreekpunt</p>
               </div>
               <div class="config-card-price">
-                <span class="config-price" data-monthly="12.49" data-yearly="9.99">€ 9,99</span>
+                <span class="config-price" data-monthly="9.99" data-yearly="7.99">€ 9,99</span>
                 <span class="config-period">/mnd</span>
               </div>
             </label>
@@ -582,28 +577,18 @@
                 <input type="radio" name="seo" value="basic" class="seo-radio">
                 <div class="seo-option-content">
                   <div>
-                    <span class="seo-option-label">Basis</span>
-                    <span class="seo-option-desc">We zetten je Google Bedrijfsprofiel goed neer en controleren maandelijks of alles klopt</span>
+                    <span class="seo-option-label">SEO Goed</span>
+                    <span class="seo-option-desc">We zetten je Google Bedrijfsprofiel goed neer en houden het netjes bij</span>
                   </div>
-                  <span class="seo-option-price" data-monthly="6.24" data-yearly="4.99">€ 4,99/mnd</span>
-                </div>
-              </label>
-              <label class="seo-option">
-                <input type="radio" name="seo" value="plus" class="seo-radio">
-                <div class="seo-option-content">
-                  <div>
-                    <span class="seo-option-label">Uitgebreid</span>
-                    <span class="seo-option-desc">We onderzoeken waar jouw klanten op zoeken, passen je teksten aan en helpen je meer Google reviews te krijgen. Maandelijks rapportje.</span>
-                  </div>
-                  <span class="seo-option-price" data-monthly="12.49" data-yearly="9.99">€ 9,99/mnd</span>
+                  <span class="seo-option-price" data-monthly="0" data-yearly="0">Gratis</span>
                 </div>
               </label>
               <label class="seo-option">
                 <input type="radio" name="seo" value="pro" class="seo-radio">
                 <div class="seo-option-content">
                   <div>
-                    <span class="seo-option-label">Volledig</span>
-                    <span class="seo-option-desc">Alles van Uitgebreid, plus artikelen schrijven, andere sites naar jou laten linken en elk kwartaal samen de strategie bijstellen</span>
+                    <span class="seo-option-label">SEO Best</span>
+                    <span class="seo-option-desc">Alles van SEO Goed, plus content, linkbuilding en kwartaalstrategie. Maatwerk.</span>
                   </div>
                   <span class="seo-option-price">Op aanvraag</span>
                 </div>
@@ -627,12 +612,12 @@
             <div class="summary-total">
               <span>Per maand</span>
               <div class="summary-total-price">
-                <span class="total-amount" id="totalAmount">€ 34,98</span>
+                <span class="total-amount" id="totalAmount">€ 34,90</span>
               </div>
             </div>
             <div class="summary-yearly" id="summaryYearly">
               <span>Per jaar</span>
-              <span id="yearlyAmount">€ 419,76</span>
+              <span id="yearlyAmount">€ 335,04</span>
             </div>
             <a href="#contact" class="btn btn--dark btn--lg summary-cta">
               Neem contact op
@@ -656,7 +641,7 @@
           <div class="standalone-footer">
             <span class="standalone-label">Booking los, vanaf</span>
             <div class="standalone-price">
-              <span class="standalone-price-amount" data-monthly="37.48" data-yearly="29.98">€ 29,98</span>
+              <span class="standalone-price-amount" data-monthly="39.90" data-yearly="31.92">€ 39,90</span>
               <span class="standalone-price-period">/mnd</span>
             </div>
           </div>
