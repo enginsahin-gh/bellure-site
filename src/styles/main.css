@@ -627,6 +627,13 @@ input[type="checkbox"], input[type="radio"] { position: absolute; opacity: 0; wi
 
 .step-line.revealed { transform: scaleY(1); }
 
+.steps-note {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-3);
+}
+
 /* ========================================
    BUTTONS
    ======================================== */
@@ -1157,19 +1164,170 @@ input[type="checkbox"], input[type="radio"] { position: absolute; opacity: 0; wi
 .standalone-price-period { font-size: 0.8rem; color: var(--text-3); }
 
 /* ========================================
-   CTA
+   PREMIUM + FAQ + CTA
    ======================================== */
+.section--premium { background: var(--bg-alt); }
+
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.premium-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.06);
+}
+
+.premium-card h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+
+.premium-card--accent {
+  background: var(--accent);
+  color: #fff;
+  border-color: rgba(255,255,255,0.12);
+}
+
+.premium-card--accent h3 { color: #fff; }
+
+.premium-list { display: grid; gap: 0.75rem; }
+.premium-list li { font-size: 0.95rem; color: var(--text-2); }
+.premium-card--accent .premium-list li { color: rgba(255,255,255,0.85); }
+
+.premium-cta { margin-top: 1.5rem; display: grid; gap: 0.6rem; }
+.premium-cta span { font-size: 0.8rem; color: rgba(255,255,255,0.65); }
+
+.section--faq { background: var(--bg); }
+.faq-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.faq-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+}
+.faq-card h4 { margin-bottom: 0.5rem; font-size: 1rem; }
+.faq-card p { color: var(--text-2); font-size: 0.95rem; }
+
 .section--cta {
   background: var(--accent);
   color: #fff;
-  text-align: center;
+  text-align: left;
 }
 
 .section--cta .section-title { color: #fff; }
 .section--cta em { color: var(--warm-light); }
-.section--cta .section-desc { color: rgba(255,255,255,0.65); }
+.section--cta .section-desc { color: rgba(255,255,255,0.75); }
 
-.cta-actions { display: flex; justify-content: center; margin-top: 2rem; }
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.cta-bullets { margin-top: 1.5rem; display: grid; gap: 0.65rem; }
+.cta-bullets li { position: relative; padding-left: 1.4rem; font-size: 0.95rem; color: rgba(255,255,255,0.85); }
+.cta-bullets li::before { content: '•'; position: absolute; left: 0; color: var(--warm-light); }
+
+.cta-note { margin-top: 1rem; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+.cta-form {
+  background: #fff;
+  color: var(--text);
+  border-radius: var(--r-lg);
+  padding: 1.75rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.22);
+}
+
+.form-section { margin-bottom: 1.5rem; }
+.form-section h4 {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.75rem;
+}
+
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+.form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-field--full { grid-column: 1 / -1; }
+.form-field span { font-size: 0.75rem; color: var(--text-2); }
+.form-field input,
+.form-field textarea,
+.form-field select {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  font-size: 0.9rem;
+  background: #fff;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: rgba(0,0,0,0.4);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+}
+.form-field textarea { min-height: 96px; resize: vertical; }
+
+.form-checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+.form-check, .form-consent {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.7rem;
+  background: #F6F4F0;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+.form-consent { margin-top: 0.8rem; padding: 0.65rem 0.75rem; }
+.form-check input[type="checkbox"],
+.form-consent input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.form-check .check,
+.form-consent .check {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.35);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: #fff;
+}
+.form-check input:checked + .check,
+.form-consent input:checked + .check {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.form-check input:checked + .check::after,
+.form-consent input:checked + .check::after {
+  content: '✓';
+}
+
+.form-actions { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+.form-note { font-size: 0.8rem; color: var(--text-3); }
+.form-message { margin-top: 0.8rem; font-size: 0.85rem; }
+.form-message.success { color: var(--green); }
+.form-message.error { color: #ef4444; }
 
 /* ========================================
    FOOTER
@@ -1234,6 +1392,9 @@ input[type="checkbox"], input[type="radio"] { position: absolute; opacity: 0; wi
   .float-card { display: none; }
   .pricing-configurator { grid-template-columns: 1fr; }
   .config-summary { position: static; }
+  .premium-grid,
+  .faq-grid,
+  .cta-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -1291,6 +1452,10 @@ input[type="checkbox"], input[type="radio"] { position: absolute; opacity: 0; wi
     flex-direction: column;
     gap: 0.6rem;
   }
+
+  .form-grid,
+  .form-checks { grid-template-columns: 1fr; }
+  .cta-form { padding: 1.25rem; }
 
   .standalone-footer { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
   .billing-toggle { flex-wrap: wrap; }

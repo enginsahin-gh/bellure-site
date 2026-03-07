@@ -329,3 +329,102 @@ setTimeout(() => {
     }
   });
 }, 2500);
+
+// ---- POC form ----
+const pocForm = document.getElementById('pocForm');
+if (pocForm) {
+  pocForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = pocForm.querySelector('button[type="submit"]');
+    const msgEl = document.getElementById('pocMessage');
+    const fd = new FormData(pocForm);
+
+    // Disable button
+    btn.disabled = true;
+    btn.textContent = 'Verzenden...';
+    msgEl.textContent = '';
+    msgEl.className = 'form-message';
+
+    // Collect addons
+    const addons = [];
+    ['addon_website','addon_booking','addon_cms','addon_email','addon_support','addon_seo_best'].forEach(n => {
+      if (fd.get(n)) addons.push(n.replace('addon_',''));
+    });
+
+    // Build structured message
+    const lines = [
+      '--- POC AANVRAAG ---',
+      '',
+      'SALONGEGEVENS',
+      `Salonnaam: ${fd.get('salon_name')}`,
+      `Contactpersoon: ${fd.get('contact_person')}`,
+      `E-mail: ${fd.get('contact_email')}`,
+      `Telefoon: ${fd.get('contact_phone') || '-'}`,
+      `Plaats: ${fd.get('city')}`,
+      `Adres: ${fd.get('address') || '-'}`,
+      `Type salon: ${fd.get('salon_type') || '-'}`,
+      `Huidige website: ${fd.get('current_website') || '-'}`,
+      `Instagram: ${fd.get('instagram') || '-'}`,
+      '',
+      'STIJL & MERK',
+      `Merkwoorden / sfeer: ${fd.get('brand_keywords') || '-'}`,
+      `Kleurvoorkeuren: ${fd.get('colors') || '-'}`,
+      `Font voorkeur: ${fd.get('fonts') || '-'}`,
+      `Inspiratie links: ${fd.get('inspiration_links') || '-'}`,
+      '',
+      'INHOUD & AANBOD',
+      `Behandelingen: ${fd.get('services') || '-'}`,
+      `Prijslijst: ${fd.get('price_range') || '-'}`,
+      `Openingstijden: ${fd.get('opening_hours') || '-'}`,
+      `Teamleden: ${fd.get('team') || '-'}`,
+      `Gewenste paginas: ${fd.get('pages') || '-'}`,
+      '',
+      'MEDIA & ASSETS',
+      `Logo link: ${fd.get('logo_link') || '-'}`,
+      `Fotos link: ${fd.get('photo_link') || '-'}`,
+      `Extra assets: ${fd.get('assets') || '-'}`,
+      '',
+      'WENSEN & PLANNING',
+      `Must-haves: ${fd.get('must_haves') || '-'}`,
+      `Niet doen: ${fd.get('dont_want') || '-'}`,
+      `Gewenste live datum: ${fd.get('deadline') || '-'}`,
+      `Domeinnaam: ${fd.get('domain') || '-'}`,
+      `Opmerkingen: ${fd.get('notes') || '-'}`,
+      '',
+      `Gewenste opties: ${addons.length ? addons.join(', ') : '-'}`,
+    ];
+
+    const payload = {
+      salon_name: fd.get('salon_name'),
+      contact_person: fd.get('contact_person'),
+      contact_method: fd.get('contact_email'),
+      current_website: fd.get('current_website') || '',
+      message: lines.join('\n'),
+    };
+
+    try {
+      const res = await fetch('https://api.bellure.nl/api/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error('Server error');
+
+      msgEl.textContent = 'Bedankt! Je aanvraag is ontvangen. We nemen zo snel mogelijk contact op.';
+      msgEl.className = 'form-message success';
+      pocForm.reset();
+      // Re-check default addons
+      const ws = pocForm.querySelector('[name="addon_website"]');
+      const bk = pocForm.querySelector('[name="addon_booking"]');
+      if (ws) ws.checked = true;
+      if (bk) bk.checked = true;
+    } catch (err) {
+      msgEl.textContent = 'Er ging iets mis. Probeer het opnieuw of mail naar hello@bellure.nl.';
+      msgEl.className = 'form-message error';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Vraag POC aan';
+    }
+  });
+}
